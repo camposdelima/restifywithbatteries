@@ -27,5 +27,7 @@ describe('Restify with batteries', function() {
 			.get('/');
 	});
 	
-	
+	after(function() {
+		server.close();
+	});
 });
