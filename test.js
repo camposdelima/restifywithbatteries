@@ -19,6 +19,8 @@ describe('Restify with batteries', function() {
 		let chainable = server.prepare(() => {});
 		expect('prepare' in chainable).to.be.true;
 		expect('listen' in chainable).to.be.true;
+		expect('withDefault' in chainable).to.be.true;
+		expect('withCache' in chainable).to.be.true;
 	});
 	
 	it('should up a server', async function() {
