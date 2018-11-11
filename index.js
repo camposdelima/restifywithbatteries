@@ -25,8 +25,12 @@ module.exports.create = function create(params) {
 				await func(req, res);
 			} catch (err) {
 				console.warn(err);
-				if(err.message.indexOf('not found') > 0)
+				if(err.message.toLowerCase().includes('not found'))
 					res.status(404);
+				else if(err.message.toLowerCase().includes('unauthorized'))
+					res.status(401);
+				else if(err.message.toLowerCase().includes('forbidden'))
+					res.status(403);
 				else if(err.code == 'ETIMEDOUT' || err.code == 'EHOSTUNREACH')
 					res.status(504);
 				else
