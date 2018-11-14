@@ -1,4 +1,4 @@
-//using "mocha -w traderTest.js"
+//using "mocha -w test.js"
 
 const chai = require('chai'),
 chaiHttp = require('chai-http'),

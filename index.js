@@ -25,7 +25,13 @@ module.exports.create = function create(params) {
 				await func(req, res);
 			} catch (err) {
 				console.warn(err);
-				if(err.message.toLowerCase().includes('not found'))
+				
+				if(err.message)
+					res.send(err.message);
+				
+				if(err.statusCode)	
+					res.status(err.statusCode);
+				else if(err.message.toLowerCase().includes('not found'))
 					res.status(404);
 				else if(err.message.toLowerCase().includes('unauthorized'))
 					res.status(401);
