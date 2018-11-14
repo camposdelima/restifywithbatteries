@@ -26,10 +26,7 @@ module.exports.create = function create(params) {
 			} catch (err) {
 				console.warn(err);
 				
-				if(err.message)
-					res.send(err.message);
-				
-				if(err.statusCode)	
+				if(err.statusCode)
 					res.status(err.statusCode);
 				else if(err.message.toLowerCase().includes('not found'))
 					res.status(404);
@@ -41,6 +38,12 @@ module.exports.create = function create(params) {
 					res.status(504);
 				else
 					res.status(500);
+				
+				res.send({
+					statusCode: err.statusCode,
+					message: err.message
+				});
+				
 			} finally {
 				res.end(); 
 			}  
