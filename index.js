@@ -26,8 +26,8 @@ module.exports.create = function create(params) {
 			} catch (err) {
 				console.warn(err);
 				
-				if(err.statusCode)
-					res.status(err.statusCode);
+				if(err.code)
+					res.status(err.code);
 				else if(err.message.toLowerCase().includes('not found'))
 					res.status(404);
 				else if(err.message.toLowerCase().includes('unauthorized'))
@@ -40,7 +40,7 @@ module.exports.create = function create(params) {
 					res.status(500);
 				
 				res.send({
-					statusCode: err.statusCode,
+					code: err.code,
 					message: err.message
 				});
 				
